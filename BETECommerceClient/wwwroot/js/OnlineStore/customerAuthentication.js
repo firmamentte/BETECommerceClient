@@ -1,3 +1,15 @@
+var checkOutSignUp = function () {
+    showPopupFormProgressBar();
+    fetch("/ApplicationUser/SignUp").
+        then(handleError).
+        then(htmlDataType).
+        then(function (signUpResp) {
+        showPopupFormHtml(signUpResp);
+    }).
+        catch(function (error) {
+        showErrorPopupForm(error);
+    });
+};
 var checkOutSignIn = function () {
     showPopupFormProgressBar();
     fetch("/ApplicationUser/CheckOutSignIn").

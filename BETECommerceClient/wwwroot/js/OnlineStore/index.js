@@ -49,7 +49,8 @@ var updateCartSummary = function () {
         then(handleError).
         then(jsonDataType).
         then(function (data) {
-        document.querySelector(".cart-label-qty .lblQuantity").textContent = data.quantity(document.querySelector(".cart-label-sub-total .lblSubTotal")).textContent = data.subTotal;
+        document.querySelector(".cart-label-qty .lblQuantity").textContent = data.quantity;
+        document.querySelector(".cart-label-sub-total .lblSubTotal").textContent = data.subTotal;
         reCenterCartSummaryPopup();
     }).
         catch(function (error) {
@@ -65,6 +66,7 @@ var updateCartItemQuantity = function (itemDetailId, quantity) {
         then(function (data) {
         document.querySelector("#divLineItemGrid").innerHTML = data;
         updateCartSummary();
+        hidePopupFormProgressBar();
     }).
         catch(function (error) {
         showErrorPopupForm(error);
@@ -177,7 +179,20 @@ var submitSignIn = function () {
         showErrorPopupForm(error);
     });
 };
+var signUp = function () {
+    toggleButtonProgressBar(document.querySelector("#navWelcome"), document.querySelector("#progressBarWelcome"));
+    fetch("/ApplicationUser/SignUp").
+        then(handleError).
+        then(htmlDataType).
+        then(function (signUpResp) {
+        showPopupFormHtml(signUpResp);
+    }).
+        catch(function (error) {
+        showErrorPopupForm(error);
+    });
+};
 var checkOut = function () {
+    toggleButtonProgressBar(document.querySelector("#navViewCart"), document.querySelector("#progressBarViewCart"));
     window.location.assign("/OnlineStore/ShouldAuthenticateCustomer");
 };
 var showCartSummaryPopupButton = function () {

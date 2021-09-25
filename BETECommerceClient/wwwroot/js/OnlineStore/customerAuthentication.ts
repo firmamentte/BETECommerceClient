@@ -1,4 +1,19 @@
-﻿const checkOutSignIn = () => {
+﻿const checkOutSignUp = () => {
+
+    showPopupFormProgressBar()
+
+    fetch("/ApplicationUser/SignUp",).
+        then(handleError).
+        then(htmlDataType).
+        then((signUpResp) => {
+            showPopupFormHtml(signUpResp)
+        }).
+        catch((error) => {
+            showErrorPopupForm(error)
+        })
+}
+
+const checkOutSignIn = () => {
 
     showPopupFormProgressBar()
 

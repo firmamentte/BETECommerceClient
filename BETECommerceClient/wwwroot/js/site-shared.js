@@ -35,18 +35,6 @@ var index = function () {
 var signOut = function () {
     window.location.assign("/ApplicationUser/UserSignOut");
 };
-var signUp = function () {
-    toggleButtonProgressBar(document.querySelector("#navWelcome"), document.querySelector("#progressBarWelcome"));
-    fetch("/ApplicationUser/SignUp").
-        then(handleError).
-        then(htmlDataType).
-        then(function (signUpResp) {
-        showPopupFormHtml(signUpResp);
-    }).
-        catch(function (error) {
-        showErrorPopupForm(error);
-    });
-};
 var submitSignUp = function () {
     var _messageSignUp = clearErrorMessageDiv(document.querySelector("#messageSignUp"));
     validateSignUp(_messageSignUp);

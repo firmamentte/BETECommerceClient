@@ -69,8 +69,8 @@ const updateCartSummary = () => {
         then(jsonDataType).
         then((data) => {
             
-            (<HTMLLabelElement>document.querySelector(".cart-label-qty .lblQuantity")).textContent = data.quantity
-            (<HTMLLabelElement>document.querySelector(".cart-label-sub-total .lblSubTotal")).textContent = data.subTotal
+            document.querySelector(".cart-label-qty .lblQuantity").textContent = data.quantity
+            document.querySelector(".cart-label-sub-total .lblSubTotal").textContent = data.subTotal
 
             reCenterCartSummaryPopup()
         }).
@@ -95,6 +95,8 @@ const updateCartItemQuantity = (itemDetailId: string, quantity: number) => {
             document.querySelector("#divLineItemGrid").innerHTML = data
 
             updateCartSummary();
+
+            hidePopupFormProgressBar()
         }).
         catch((error) => {
             showErrorPopupForm(error)
@@ -260,7 +262,25 @@ const submitSignIn = () => {
         })
 }
 
+const signUp = () => {
+
+    toggleButtonProgressBar(document.querySelector("#navWelcome"), document.querySelector("#progressBarWelcome"))
+
+    fetch("/ApplicationUser/SignUp",).
+        then(handleError).
+        then(htmlDataType).
+        then((signUpResp) => {
+            showPopupFormHtml(signUpResp)
+        }).
+        catch((error) => {
+            showErrorPopupForm(error)
+        })
+}
+
 const checkOut = () => {
+
+    toggleButtonProgressBar(document.querySelector("#navViewCart"), document.querySelector("#progressBarViewCart"))
+
     window.location.assign("/OnlineStore/ShouldAuthenticateCustomer")
 }
 

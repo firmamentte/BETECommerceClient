@@ -43,21 +43,6 @@ const signOut = () => {
     window.location.assign("/ApplicationUser/UserSignOut")
 }
 
-const signUp = () => {
-
-    toggleButtonProgressBar(document.querySelector("#navWelcome"), document.querySelector("#progressBarWelcome"))
-
-    fetch("/ApplicationUser/SignUp",).
-        then(handleError).
-        then(htmlDataType).
-        then((signUpResp) => {
-            showPopupFormHtml(signUpResp)
-        }).
-        catch((error) => {
-            showErrorPopupForm(error)
-        })
-}
-
 const submitSignUp = () => {
 
     const _messageSignUp = clearErrorMessageDiv(document.querySelector("#messageSignUp"))
