@@ -1,0 +1,488 @@
+﻿@model BETECommerceClient.Models.Reporting.PurchaseOrderReportModel
+
+<style>
+
+    * {
+        font-family: Verdana;
+    }
+
+    br {
+        clear: both;
+    }
+
+    strong {
+        font-weight: bold;
+    }
+
+    .print-date {
+        width: 100%;
+    }
+
+        .print-date label {
+            font-size: 0.75em;
+        }
+
+    .header {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+
+        /* Styles for upper header
+        -----------------------------------------------------------*/
+        .header .upper-header {
+            width: 100%;
+            display: flex;
+        }
+
+            .header .upper-header .logo-div {
+                flex: 1;
+                display: flex;
+                align-items: center;
+            }
+
+                .header .upper-header .logo-div .logo {
+                    width: 14%;
+                }
+
+            .header .upper-header .contact-info {
+                flex: 2;
+                text-align: right;
+            }
+
+                .header .upper-header .contact-info .title h1 {
+                    text-align: right;
+                    font-size: 1.5em;
+                }
+
+                .header .upper-header .contact-info .title h2 {
+                    text-align: right;
+                    font-size: 1.2em;
+                }
+
+                .header .upper-header .contact-info table {
+                    width: 100%;
+                    border-collapse: separate;
+                    border-spacing: 0px 12px;
+                }
+
+                    .header .upper-header .contact-info table .label, .value {
+                        text-align: right;
+                        font-size: 0.75em;
+                    }
+
+                    .header .upper-header .contact-info table .value {
+                        width: 20%;
+                    }
+
+        /* Styles for lower header
+                -----------------------------------------------------------*/
+        .header .lower-header {
+            width: 100%;
+            display: flex;
+        }
+
+            .header .lower-header .shipping-info {
+                flex: 1;
+                display: flex;
+                border-top-left-radius: 12px;
+                border-bottom-left-radius: 12px;
+                border-right: 0px none;
+            }
+
+            .header .lower-header .shipping-info, .purchase-order-info {
+                border: 1px solid #000000;
+                box-sizing: border-box;
+                padding: 10px;
+            }
+
+                .header .lower-header .shipping-info .title {
+                    font-weight: bold;
+                    font-size: 0.75em;
+                }
+
+                .header .lower-header .shipping-info .shipping-address {
+                    flex: 1;
+                    display: flex;
+                    flex-direction: column;
+                    box-sizing: border-box;
+                    padding: 10px;
+                }
+
+                    .header .lower-header .shipping-info .shipping-address .ship-to-address {
+                        margin-top: 8px;
+                    }
+
+                        .header .lower-header .shipping-info .shipping-address .ship-to-address label {
+                            font-size: 0.75em;
+                            line-height: 18px;
+                        }
+
+                .header .lower-header .shipping-info .shipping-contact-detail {
+                    flex: 2;
+                    display: flex;
+                    flex-direction: column;
+                    box-sizing: border-box;
+                    padding: 10px;
+                }
+
+                    .header .lower-header .shipping-info .shipping-contact-detail table {
+                        border-collapse: separate;
+                        border-spacing: 0px 8px;
+                    }
+
+                        .header .lower-header .shipping-info .shipping-contact-detail table .ship-to-contact-label, .ship-to-contact-value {
+                            font-size: 0.75em;
+                        }
+
+            .header .lower-header .purchase-order-info {
+                flex: 1;
+                border-top-right-radius: 12px;
+                border-bottom-right-radius: 12px;
+            }
+
+                .header .lower-header .purchase-order-info table {
+                    border-collapse: separate;
+                    border-spacing: 10px 10px;
+                }
+
+                .header .lower-header .purchase-order-info .purchase-order-info-label, .purchase-order-info-value {
+                    font-size: 0.75em;
+                }
+
+                .header .lower-header .purchase-order-info .purchase-order-info-label {
+                    font-weight: bold;
+                }
+
+    /* Styles for line items
+        -----------------------------------------------------------*/
+    .line-item {
+        width: 100%;
+        display: block;
+    }
+
+        .line-item table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 8px 8px;
+        }
+
+            .line-item table .line-item-label {
+                font-weight: bold;
+                text-align: left;
+            }
+
+            .line-item table .line-item-label, .line-item-value {
+                font-size: 0.75em;
+            }
+
+            .line-item table .th-row-separator {
+                border-top: 1px solid #000000;
+            }
+
+            .line-item table .brand-size-colour .brand-size-colour-label {
+                font-weight: bold;
+            }
+
+            .line-item table .brand-size-colour .brand-size-colour-label, .brand-size-colour-value {
+                font-size: 0.75em;
+            }
+
+            .line-item table .line-item-row-separator {
+                border-top: 1px dashed #000000;
+            }
+
+    /* Styles for totals
+        -----------------------------------------------------------*/
+    .total {
+        margin-top: 20px;
+        float: right;
+        border-collapse: separate;
+        border-spacing: 16px 16px;
+        border: 1px solid #000000;
+        border-radius: 12px;
+    }
+
+        .total td {
+            font-weight: bold;
+            font-size: 0.95em;
+        }
+
+        .total .total-separator {
+            border-top: 1px solid #000000;
+        }
+
+    /* Styles for footer
+        -----------------------------------------------------------*/
+    .footer {
+        width: 100%;
+        margin-top: 30px;
+        display: flex;
+    }
+
+        .footer .payment-instruction {
+            border-top-left-radius: 12px;
+            border-bottom-left-radius: 12px;
+            flex: 2;
+        }
+
+        .footer .banking-detail {
+            border-top-right-radius: 12px;
+            border-bottom-right-radius: 12px;
+            border-left: 0px none;
+            flex: 1;
+        }
+
+        .footer .payment-instruction, .banking-detail {
+            border: 1px solid #000000;
+            box-sizing: border-box;
+            padding: 20px;
+        }
+
+        .footer .title {
+            font-weight: bold;
+            font-size: 0.75em;
+        }
+
+        .footer .payment-instruction .instruction-div {
+            margin-top: 10px;
+        }
+
+            .footer .payment-instruction .instruction-div .instruction-label {
+                margin-top: 50px;
+                font-size: 0.95em;
+                line-height: 22px;
+            }
+
+        .footer .banking-detail .banking-detail-tbl {
+            border-collapse: separate;
+            border-spacing: 0px 10px;
+        }
+
+            .footer .banking-detail .banking-detail-tbl td {
+                font-size: 0.75em;
+            }
+
+    /* Styles for signatures
+        -----------------------------------------------------------*/
+    .signature-tbl {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0px 45px;
+    }
+
+        .signature-tbl .full-name, .date, .signature {
+            font-size: 0.75em;
+            font-weight: bold;
+        }
+
+        .signature-tbl .write-line-full-name, .write-line-date, .write-line-signature {
+            border-bottom: 1px solid #000000;
+        }
+
+        .signature-tbl .write-line-full-name {
+            width: 25%;
+        }
+
+        .signature-tbl .write-line-date {
+            width: 15%;
+        }
+
+        .signature-tbl .write-line-signature {
+            width: 20%;
+        }
+</style>
+<div class="print-date">
+    <label>@DateTime.Now.ToString("yyyy/MM/dd HH:mm")</label>
+</div>
+<div class="header">
+    <div class="upper-header">
+        <div class="contact-info">
+            <div class="title">
+                <h1>PURCHASE ORDER</h1>
+            </div>
+            <div class="title">
+                <h2>@Model.CompanyName</h2>
+            </div>
+            <table>
+                <tr>
+                    <td class="label">Registration Number:</td>
+                    <td class="value">@Model.RegistrationNumber</td>
+                </tr>
+                @if (!string.IsNullOrWhiteSpace(Model.VATNumber))
+                {
+                    <tr>
+                        <td class="label">VAT Number:</td>
+                        <td class="value">@Model.VATNumber</td>
+                    </tr>
+                }
+                <tr>
+                    <td class="label">Telephone Number:</td>
+                    <td class="value">@Model.CompanyTelephoneNumber</td>
+                </tr>
+                @if (!string.IsNullOrWhiteSpace(Model.CompanyMobileNumber))
+                {
+                    <tr>
+                        <td class="label">Mobile Number:</td>
+                        <td class="value">@Model.CompanyMobileNumber</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.CompanyFaxNumber))
+                {
+                    <tr>
+                        <td class="label">Fax Number:</td>
+                        <td class="value">@Model.CompanyFaxNumber</td>
+                    </tr>
+                }
+                <tr>
+                    <td colspan="2" class="value">
+                        @Model.CompanyEmailAddress
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="value">
+                        @Model.CompanyWebsiteAddress
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="value">
+                        @Model.CompanyAddress
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="lower-header">
+        <div class="shipping-info">
+            <div class="shipping-address">
+                <label class="title">Ship To Email Address:</label>
+                <div class="ship-to-address">
+                    <label>
+                        @Model.ShipToEmailAddress
+                    </label>
+                </div>
+            </div>
+            <div class="shipping-contact-detail">
+                <label class="title">Ship To Contacts:</label>
+                <table>
+                    <tr>
+                        <td class="ship-to-contact-value" colspan="2">@Model.ShipToEmailAddress</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="purchase-order-info">
+            <table>
+                <tr>
+                    <td class="purchase-order-info-label">Purchase Order Number:</td>
+                    <td class="purchase-order-info-value">@Model.PurchaseOrderNumber</td>
+                </tr>
+                <tr>
+                    <td class="purchase-order-info-label">Purchase Order Date:</td>
+                    <td class="purchase-order-info-value">@Model.PurchaseOrderDate.ToString("yyyy/MM/dd")</td>
+                </tr>
+                <tr>
+                    <td class="purchase-order-info-label">Payment Status:</td>
+                    <td class="ship-to-contact-value">@Model.PaymentStatus</td>
+                </tr>
+                <tr>
+                    <td class="purchase-order-info-label">Shipping Status:</td>
+                    <td class="purchase-order-info-value">@Model.ShippingStatus</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="line-item">
+    <table>
+        <tr>
+            <th class="line-item-label">
+                Quantity
+            </th>
+            <th class="line-item-label">
+                Description
+            </th>
+            <th class="line-item-label">
+                Sale Price
+            </th>
+            <th class="line-item-label">
+                Sub Total
+            </th>
+        </tr>
+        <tr>
+            <th colspan="4" class="th-row-separator">
+            </th>
+        </tr>
+        @foreach (var lineItem in Model.LineItems)
+        {
+            <tr>
+                <td class="line-item-value">
+                    @lineItem.Quantity.ToString("N0")
+                </td>
+                <td class="line-item-value">
+                    @lineItem.ItemDescription
+                </td>
+                <td class="line-item-value">
+                    @ControllerHelper.EnumHelper.GetEnumDescription(ControllerHelper.EnumHelper.CurrencyCode.Code) @lineItem.SalePrice.ToString("N")
+                </td>
+                <td class="line-item-value">
+                    @ControllerHelper.EnumHelper.GetEnumDescription(ControllerHelper.EnumHelper.CurrencyCode.Code) @lineItem.SubTotal.ToString("N")
+                </td>
+            </tr>
+            <tr>
+                <td class="line-item-row-separator" colspan="4">
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+<table class="total">
+    <tr>
+        <td>
+            Amount Due:
+        </td>
+        <td>
+            @ControllerHelper.EnumHelper.GetEnumDescription(ControllerHelper.EnumHelper.CurrencyCode.Code) @Model.AmountDue.ToString("N")
+        </td>
+    </tr>
+</table>
+<br />
+<div class="footer">
+    <div class="payment-instruction">
+        <label class="title">Payment Instructions</label>
+        <div class="instruction-div">
+            <label class="instruction-label">
+                FOR <strong>EFT PAYMENTS / DIRECT DEPOSITS</strong>, PLEASE USE <strong>PURCHASE ORDER NUMBER</strong> AS YOUR REFERENCE WHEN MAKING PAYMENT, EMAIL AN OFFICIAL PROOF OF PAYMENT WITHIN <strong>24 HOURS</strong> TO <strong>@Configuration["CompanyInformation:CompanyEmailAddress"].ToUpper()</strong>. EMAILING YOUR PROOF OF PAYMENT FROM INTERNET BANKING DIRECTLY WILL SPEED UP YOUR PURCHASE ORDER SHIPPING. THANK YOU.
+            </label>
+        </div>
+    </div>
+    <div class="banking-detail">
+        <label class="title">Banking Details</label>
+        <table class="banking-detail-tbl">
+            <tr>
+                <td>Bank Name:</td>
+                <td>@Model.BankName</td>
+            </tr>
+            <tr>
+                <td>Account Name:</td>
+                <td>@Model.AccountName</td>
+            </tr>
+            <tr>
+                <td>Account Number:</td>
+                <td>@Model.AccountNumber</td>
+            </tr>
+            @if (string.IsNullOrWhiteSpace(Model.BankName))
+            {
+                <tr>
+                    <td>Branch Name:</td>
+                    <td>@Model.BranchName</td>
+                </tr>
+            }
+            <tr>
+                <td>Branch Code:</td>
+                <td>@Model.BranchCode</td>
+            </tr>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+﻿<!DOCTYPE html>
+<html lang="en-za">
+<head>
+    @{ await Html.RenderPartialAsync("_Declaration"); }
+</head>
+<body>
+    @{ await Html.RenderPartialAsync("_PageTitle"); }
+    <div id="body">
+        <div id="inner-body">
+            @RenderBody()
+        </div>
+    </div>
+    @{ await Html.RenderPartialAsync("_OnlineStoreFooter"); }
+</body>
+</html>

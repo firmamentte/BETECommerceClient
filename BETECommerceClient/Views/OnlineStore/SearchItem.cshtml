@@ -1,0 +1,29 @@
+﻿@model BETECommerceClient.Models.OnlineStore.SearchItemModel
+
+<div class="popup-form-medium">
+    <form id="formSearchItem" asp-antiforgery="true">
+        <fieldset>
+            <h1>SEARCH ITEMS</h1>
+            <input asp-for="ItemDescription" class="text-box" placeholder="Item Name / Description (Optional)" />
+            <div id="messageSearchItem" class="message-label"></div>
+            <nav>
+                <table id="navSearchItem" class="nav-table">
+                    <tr>
+                        <td>
+                            <input type="button" value="SEARCH" class="button" onclick="submitSearchItem()" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="nav-separator"></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="button" value="CANCEL" class="button" onclick="hidePopupForm()" />
+                        </td>
+                    </tr>
+                </table>
+                <input id="progressBarSearchItem" type="button" value="WORKING..." class="button-progress-bar" disabled="disabled" />
+            </nav>
+        </fieldset>
+    </form>
+</div>

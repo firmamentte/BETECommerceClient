@@ -1,0 +1,9 @@
+﻿@{
+    Layout = "~/Views/Shared/_OnlineStoreLayout.cshtml";
+}
+
+<script src="~/js/OnlineStore/index.js" asp-append-version="true"></script>
+
+<div id="divMainItemGrid">
+    @{ await Html.RenderPartialAsync("MainItemGrid");}
+</div>

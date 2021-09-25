@@ -1,0 +1,50 @@
+﻿@model BETECommerceClient.Models.OnlineStore.AddToCartModel
+@{
+    ViewBag.Title = "ADD TO CART";
+
+    Layout = "~/Views/Shared/_Layout100Percent.cshtml";
+}
+
+<script src="~/js/OnlineStore/addToCart.js" asp-append-version="true"></script>
+
+<div class="page-form">
+    <br />
+    <br />
+    <div id="body-70-percent">
+        <div class="add-to-cart-pic-slider">
+            <br />
+            <br />
+            <div class="pic-slide current">
+                <img alt="item picture" src="@Model.PictureFileName" onclick="showItemImage(this)" />
+            </div>
+        </div>
+        <div class="add-to-cart-row">
+            <label id="itemDescription" class="field-label">@Model.ItemDescription</label>
+        </div>
+        <div class="add-to-cart-row">
+            <label class="field-label-0D8609">@ControllerHelper.EnumHelper.GetEnumDescription(ControllerHelper.EnumHelper.CurrencyCode.Code) @Model.CurrentSalePrice.ToString("N")</label>
+        </div>
+        <form id="formAddToCart" asp-antiforgery="true">
+            <div class="add-to-cart-row">
+                <input id="Quantity" asp-for="Quantity" type="number" class="text-box" placeholder="Quantity" />
+            </div>
+            <input asp-for="ItemDescription" type="hidden" />
+            <input asp-for="SalePrice" type="hidden" />
+            <input asp-for="PercentageDiscount" type="hidden" />
+            <input asp-for="PictureFileName" type="hidden" />
+            <div id="messageAddToCart" class="message-label"></div>
+            <nav>
+                <table id="navAddToCart" class="nav-table">
+                    <tr>
+                        <td>
+                            <input type="button" value="ADD TO CART" class="button" onclick="submitAddToCart()" />
+                        </td>
+                    </tr>
+                </table>
+                <input id="progressBarAddToCart" type="button" value="WORKING..." class="button-progress-bar" disabled="disabled" />
+            </nav>
+        </form>
+    </div>
+    <br />
+    <br />
+</div>

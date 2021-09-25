@@ -1,0 +1,63 @@
+﻿@model BETECommerceClient.Models.OnlineStore.PurchaseOrderConfirmationModel
+
+@{
+    ViewBag.Title = "CONFIRMATION";
+
+    Layout = "~/Views/Shared/_Layout40Percent.cshtml";
+}
+
+<div class="page-form">
+    <div class="confirmation-title">
+        <h1>YOUR ORDER HAS BEEN PLACED SUCCESSFUL.</h1>
+    </div>
+    <div class="confirmation-sub-title">
+        <h1>THANK YOU FOR SHOPPING WITH US.</h1>
+    </div>
+    <div class="confirmation-body">
+        <p>
+            <strong>Purchase Order Number:</strong> @Html.LabelForModel(Model.PurchaseOrderNumber), please use it as your Reference when making payment.
+            <br />
+            <br />
+            <strong>Amount Due:</strong> @ControllerHelper.EnumHelper.GetEnumDescription(ControllerHelper.EnumHelper.CurrencyCode.Code) @Html.LabelForModel(Model.AmountDue.ToString("N"))
+            <br />
+            You have been emailed a copy of your Purchase Order.
+            <br />
+        </p>
+        <h2>BANKING DETAILS</h2>
+        <p>
+            <strong>Account Name:</strong> @Html.LabelForModel(Model.AccountName)<br />
+            <strong>Bank Name:</strong> @Html.LabelForModel(Model.BankName)<br />
+            <strong>Account Number:</strong> @Html.LabelForModel(Model.AccountNumber)<br />
+            <strong>Branch Name:</strong> @Html.LabelForModel(Model.BranchName)<br />
+            <strong>Branch Code:</strong> @Html.LabelForModel(Model.BranchCode)
+        </p>
+        <br />
+        <p>
+            PLEASE USE PURCHASE ORDER NUMBER AS YOUR REFERENCE WHEN MAKING PAYMENT,
+            EMAIL AN OFFICIAL PROOF OF PAYMENT TO @Configuration["CompanyInformation:CompanyEmailAddress"].ToUpper(),
+            EMAILING YOUR PROOF OF PAYMENT FROM INTERNET BANKING DIRECTLY
+            WILL SPEED UP YOUR PURCHASE ORDER SHIPPING. THANK YOU.
+        </p>
+    </div>
+    <nav>
+        <table id="navConfirmation" class="nav-table">
+            <tr>
+                <td>
+                    <input type="button" value="BACK TO SHOP" class="button" onclick="index()" />
+                </td>
+            </tr>
+            @if (!string.IsNullOrWhiteSpace(HttpContextAccessor.HttpContext.Session.GetString("Username")))
+            {
+                <tr>
+                    <td class="nav-separator"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="button" class="button-9E0000" value="SIGN OUT" onclick="signOut()" />
+                    </td>
+                </tr>
+            }
+        </table>
+        <input id="progressBarConfirmation" type="button" value="WORKING..." class="button-progress-bar" disabled="disabled" />
+    </nav>
+</div>

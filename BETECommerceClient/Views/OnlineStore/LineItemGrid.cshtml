@@ -1,0 +1,46 @@
+﻿@model List<BETECommerceClient.Models.OnlineStore.LineItemGridSessionModel>
+
+@if ((Model != null) && (Model.Any()))
+{
+    <div class="grid-view">
+        @foreach (var item in Model.OrderBy(item => item.ItemDescription).ThenBy(item => item.Quantity))
+        {
+            <div class="gv-row">
+                <div class="line-item-grid">
+                    <div class="line-item-info">
+                        <div class="gv-row-line">
+                            <input type="number" class="text-box-line-item-quantity" value="@item.Quantity" onchange='updateCartItemQuantity(
+                                                                                                                     "@item.ItemDetailId",
+                                                                                                                     this.value)' />
+                        </div>
+                        <div class="gv-row-line">
+                            <span class="gv-value">@item.ItemDescription</span>
+                        </div>
+                        <div class="gv-row-line">
+                            <span class="gv-value">@ControllerHelper.EnumHelper.GetEnumDescription(ControllerHelper.EnumHelper.CurrencyCode.Code) @item.SubTotal.ToString("N")</span>
+                        </div>
+                    </div>
+                    <div class="line-item-picture">
+                        <img alt="item picture" src="@item.PictureFileName" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    { await Html.RenderPartialAsync("_GridViewMessage"); }
+}
+@if ((Model != null) && (Model.Any()))
+{
+    <div class="grid-view">
+        <div class="gv-row-total">
+            <div class="gv-row-line">
+                <span class="gv-total-value">Sub Total: </span>
+                <span class="gv-total-value">@ControllerHelper.EnumHelper.GetEnumDescription(ControllerHelper.EnumHelper.CurrencyCode.Code) @Model.Sum(li => li.SubTotal).ToString("N")</span>
+            </div>
+        </div>
+    </div>
+}
+<div class="grid-bottom-line"></div>

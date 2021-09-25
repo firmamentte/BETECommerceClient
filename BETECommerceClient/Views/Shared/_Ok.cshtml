@@ -1,0 +1,18 @@
+﻿@model BETECommerceClient.Models.Shared.OkModel
+
+<div class="ok-div" onclick="hidePopupForm()">
+    <div class="popup-form-small">
+        <div class="ok-yes-no-div">
+            <div class="ok-yes-no-body">
+                <div class="ok-yes-no-icon">
+                    <p><label>@Model.MessageSymbol</label></p>
+                </div>
+                <div class="ok-yes-no-message">
+                    <span class="field-label">
+                        @Html.Raw(Model.OkMessage)
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

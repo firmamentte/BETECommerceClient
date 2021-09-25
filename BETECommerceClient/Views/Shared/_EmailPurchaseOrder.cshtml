@@ -1,0 +1,10 @@
+﻿@{
+    Layout = "~/Views/Shared/_EmailLayout.cshtml";
+}
+
+<p style="font-size: 0.95em;
+   color: #ffffff;
+   font-family: Verdana;">
+    Dear @ViewBag.ShipToEmailAddress<br /><br />
+    @Html.Raw(ViewBag.EmailBody.Replace("\n", "<br />"))<br /><br />
+</p>

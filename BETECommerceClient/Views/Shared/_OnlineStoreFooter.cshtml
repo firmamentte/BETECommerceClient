@@ -1,0 +1,26 @@
+﻿<footer>
+    <div class="inner-footer">
+        <label class="text-label">@Configuration["CompanyInformation:CompanyName"].ToUpper() © @DateTime.Now.Year</label>
+    </div>
+</footer>
+<div class="popup-form-progress-bar"></div>
+<input type="button" value="WORKING..." class="button-progress-bar" disabled="disabled" />
+<div class="scroll-top">
+    <div class="arrow">&#8593;</div>
+</div>
+<div class="cart-summary-popup">
+    <div class="cart-inner-summary-popup">
+        <div class="smaller-account" onclick="customerAccount()">
+            <div class="separator"></div>
+            <div class="smaller-account-icon"></div>
+        </div>
+        @{ await Html.RenderPartialAsync("_CartSummary"); }
+    </div>
+</div>
+<div class="cart-summary-popup-no-profile-icon">
+    <div class="cart-inner-summary-popup">
+        @{ await Html.RenderPartialAsync("_CartSummary"); }
+    </div>
+</div>
+<div class="background-popup"></div>
+<div id="popupFormToShow"></div>

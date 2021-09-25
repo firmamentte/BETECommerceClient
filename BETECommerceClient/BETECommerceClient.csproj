@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\js\javascript-firmament-bll.js" />
+    <Content Remove="wwwroot\js\javascript-firmament-design.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Views\ApplicationUser\" />
+    <Folder Include="wwwroot\itemPictures\" />
+    <Folder Include="wwwroot\purchaseOrders\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="4.4.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Select.HtmlToPdf.NetCore" Version="21.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BETECommerceClient.BLL\BETECommerceClient.BLL.csproj" />
+  </ItemGroup>
+
+</Project>

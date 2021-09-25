@@ -1,0 +1,18 @@
+﻿@model List<BETECommerceClient.Models.OnlineStore.ItemGridModel>
+
+<div class="main-shop-menu">
+    <div class="shop-menu">
+        <div class="main-global-search">
+            <div class="sub-global-search" onclick="searchItem()">
+                <div class="inner-global-search">
+                    <div class="search-icon"></div>
+                    <h1>WHAT CAN WE HELP YOU FIND?</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="item-body">
+    @{ await Html.RenderPartialAsync("SubItemGrid", Model); }
+</div>
+<input id="hdItemDescription" type="hidden" />

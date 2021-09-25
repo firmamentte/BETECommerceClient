@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31702.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BETECommerceClient", "BETECommerceClient\BETECommerceClient.csproj", "{62920A09-9F6D-4790-A4DB-70545FB75275}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BETECommerceClient.BLL", "BETECommerceClient.BLL\BETECommerceClient.BLL.csproj", "{F11FBCC9-C1CA-4DFC-B243-4EC8421AE453}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{62920A09-9F6D-4790-A4DB-70545FB75275}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62920A09-9F6D-4790-A4DB-70545FB75275}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62920A09-9F6D-4790-A4DB-70545FB75275}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62920A09-9F6D-4790-A4DB-70545FB75275}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F11FBCC9-C1CA-4DFC-B243-4EC8421AE453}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F11FBCC9-C1CA-4DFC-B243-4EC8421AE453}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F11FBCC9-C1CA-4DFC-B243-4EC8421AE453}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F11FBCC9-C1CA-4DFC-B243-4EC8421AE453}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F46E07A3-F405-49E7-B1F9-957017D04FA1}
+	EndGlobalSection
+EndGlobal

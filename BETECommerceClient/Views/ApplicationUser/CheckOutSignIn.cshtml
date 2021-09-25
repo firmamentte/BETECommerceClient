@@ -1,0 +1,32 @@
+﻿@model BETECommerceClient.Models.ApplicationUser.SignInModel
+
+<div class="popup-form-medium">
+    <form id="formCustomerSignIn" asp-antiforgery="true">
+        <fieldset>
+            <h1>SIGN IN</h1>
+            <label class="field-label">Email Address:</label>
+            <input asp-for="EmailAddress" type="email" class="text-box" placeholder="Email Address"  />
+            <input asp-for="UserPassword" type="password" class="text-box" placeholder="Password" />
+            <div id="messageCustomerSignIn" class="message-label"></div>
+            <nav>
+                <table id="navCustomerSignIn" class="nav-table">
+                    <tr>
+                        <td>
+                            <input type="button" value="SIGN IN" class="button" onclick="submitCheckOutSignIn()" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="nav-separator"></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="button" value="CANCEL" class="button" onclick="hidePopupForm()" />
+                        </td>
+                    </tr>
+                </table>
+                <input id="progressBarCustomerSignIn" type="button" value="WORKING..." class="button-progress-bar" disabled="disabled" />
+            </nav>
+        </fieldset>
+    </form>
+</div>
+

@@ -1,0 +1,43 @@
+﻿@model List<BETECommerceClient.Models.OnlineStore.ItemGridModel>
+
+@foreach (var item in Model)
+{
+    <div class="item">
+        <table class="tbl-new-onsale">
+            <tr>
+                <td>
+                    @if (item.IsOnSale)
+                    {
+                        <div class="new-onsale">
+                            <label>@item.PercentageDiscount.ToString("N")% OFF</label>
+                        </div>
+                    }
+                </td>
+            </tr>
+        </table>
+        <div class="item-pic-slider">
+            <div class="pic-slide current">
+                <img alt="item picture" src="@item.PictureFileName" />
+            </div>
+        </div>
+        <div class="item-row">
+            <label class="field-label">@item.ItemDescription</label>
+        </div>
+        <div class="item-row">
+            <div class="sale-price-div">
+                <label class="field-label-0D8609">@ControllerHelper.EnumHelper.GetEnumDescription(ControllerHelper.EnumHelper.CurrencyCode.Code) @item.CurrentSalePrice.ToString("N")</label>
+            </div>
+        </div>
+        @if (item.IsOnSale)
+        {
+            <div class="item-row">
+                <div class="was-sale-price-div">
+                    <label class="field-label-454545">@ControllerHelper.EnumHelper.GetEnumDescription(ControllerHelper.EnumHelper.CurrencyCode.Code) @item.SalePrice.ToString("N")</label>
+                </div>
+            </div>
+        }
+        <nav>
+            <input type="button" class="button" value="BUY NOW" onclick='buyItem("@item.ItemDetailId")' />
+        </nav>
+    </div>
+}

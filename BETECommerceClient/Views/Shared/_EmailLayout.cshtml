@@ -1,0 +1,17 @@
+﻿<!DOCTYPE html>
+<html lang="en-za">
+<body style="background-color: #eeeeee;
+      padding-bottom: 100px;">
+    @{ await Html.RenderPartialAsync("_EmailHeader"); }
+    <div style="width: 70%;
+         min-width: 260px;
+         margin: auto;
+         box-sizing: border-box;
+         padding: 20px;
+         background-color: #1C0882"
+         id="email-body">
+        @RenderBody()
+    </div>
+    @{ await Html.RenderPartialAsync("_EmailFooter"); }
+</body>
+</html>

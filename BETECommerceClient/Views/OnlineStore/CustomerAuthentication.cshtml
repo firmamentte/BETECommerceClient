@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "Authentication";
+
+    Layout = "~/Views/Shared/_Layout40Percent.cshtml";
+}
+
+<script src="~/js/OnlineStore/customerAuthentication.js" asp-append-version="true"></script>
+
+<div class="page-form">
+    @if (string.IsNullOrWhiteSpace(HttpContextAccessor.HttpContext.Session.GetString("Username")))
+    {
+        <div class="customer-authentication-title">
+            <label class="field-label-big-454545">ALREADY A MEMBER?</label>
+        </div>
+        <nav>
+            <table id="navSignIn" class="nav-table">
+                <tr>
+                    <td>
+                        <input type="button" class="button" value="SIGN IN" onclick="checkOutSignIn()" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="nav-separator"></td>
+                </tr>
+                <tr>
+                    <td class="not-a-member-label">
+                        <label class="field-label">Not a member?</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="button" class="button-9E0000" value="SIGN UP" onclick="signUp()" />
+                    </td>
+                </tr>
+            </table>
+        </nav>
+    }
+    else
+    {
+        <div class="customer-authentication-title">
+            <label class="field-label-big-454545">ALREADY SIGNED IN.</label>
+        </div>
+        <nav>
+            <table class="nav-table">
+                <tr>
+                    <td>
+                        <input type="button" value="BACK TO SHOP" class="button" onclick="index()" />
+                    </td>
+                </tr>
+            </table>
+        </nav>
+    }
+</div>

@@ -1,0 +1,32 @@
+﻿@model List<BETECommerceClient.Models.OnlineStore.ItemGridModel>
+
+@if ((Model != null) && (Model.Any()))
+{
+    <div class="item-grid">
+        <br />
+        <br />
+        <div class="container">
+            @{ await Html.RenderPartialAsync("ItemGrid", Model);}
+        </div>
+        <div class="more-div">
+            <div id="moreItemIcon" class="more-icon"></div>
+            <div id="moreItemText" class="get-more-text">LOADING MORE ITEMS...</div>
+            <div id="moreItemError" class="get-more-error">
+                COULD NOT LOAD MORE ITEMS <input type="button" class="btn-more-try-again" value="TRY AGAIN" onclick="getMoreItems();" />
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="item-grid">
+        <br />
+        <br />
+        <div class="gv-row-item-message">
+
+            <span class="gv-message-value">@ViewBag.GridViewMessage</span>
+        </div>
+        <br />
+        <br />
+    </div>
+}

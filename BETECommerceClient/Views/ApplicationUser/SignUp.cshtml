@@ -1,0 +1,30 @@
+﻿@model BETECommerceClient.Models.ApplicationUser.SignUpModel
+
+<div class="popup-form-large">
+    <form id="formSignUp" asp-antiforgery="true">
+        <fieldset>
+            <h1>SIGN UP</h1>
+            <input asp-for="EmailAddress" type="email" class="text-box" placeholder="Email Address" />
+            <input asp-for="UserPassword" type="password" class="text-box" placeholder="Password" />
+            <div id="messageSignUp" class="message-label"></div>
+            <nav>
+                <table id="navSignUp" class="nav-table">
+                    <tr>
+                        <td>
+                            <input type="button" value="SIGN UP" class="button" onclick="submitSignUp()" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="nav-separator"></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="button" value="CANCEL" class="button" onclick="hidePopupForm()" />
+                        </td>
+                    </tr>
+                </table>
+                <input id="progressBarSignUp" type="button" value="WORKING..." class="button-progress-bar" disabled="disabled" />
+            </nav>
+        </fieldset>
+    </form>
+</div>

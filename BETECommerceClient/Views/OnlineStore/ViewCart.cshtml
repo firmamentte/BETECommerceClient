@@ -1,0 +1,22 @@
+﻿@model BETECommerceClient.Models.OnlineStore.ViewEditCartModel
+
+<div class="popup-form-large">
+    <input type="button" value="X" class="close-button-right" onclick="hidePopupForm()" />
+    <fieldset>
+        <h1>CART</h1>
+        <br />
+        <div id="divLineItemGrid">
+            @{ await Html.RenderPartialAsync("LineItemGrid", Model.LineItems);}
+        </div>
+        <nav>
+            <table id="navViewCart" class="nav-table">
+                <tr>
+                    <td>
+                        <input type="button" value="CHECKOUT" class="button" onclick="checkOut()" />
+                    </td>
+                </tr>
+            </table>
+            <input id="progressBarViewCart" type="button" value="WORKING..." class="button-progress-bar" disabled="disabled" />
+        </nav>
+    </fieldset>
+</div>
