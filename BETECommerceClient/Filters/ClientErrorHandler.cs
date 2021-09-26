@@ -9,11 +9,12 @@ namespace BETECommerceClient.Filters
     {
         public async Task OnExceptionAsync(ExceptionContext filterContext)
         {
+            filterContext.ExceptionHandled = true;
+
             var response = filterContext.HttpContext.Response;
             response.StatusCode = 500;
             response.ContentType = MediaTypeNames.Text.Plain;
             await response.WriteAsync(filterContext.Exception.Message.Replace("\n", "<br />"));
-            filterContext.ExceptionHandled = true;
         }
     }
 }
