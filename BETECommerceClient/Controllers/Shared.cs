@@ -25,20 +25,13 @@ namespace BETECommerceClient.Controllers
         [HttpGet]
         public ActionResult CustomerAccount()
         {
-            try
+            if (!string.IsNullOrWhiteSpace(GetUsernameFromSession))
             {
-                if (!string.IsNullOrWhiteSpace(GetUsernameFromSession))
-                {
-                    return PartialView("_CustomerAccount");
-                }
-                else
-                {
-                    return PartialView("_Welcome");
-                }
+                return PartialView("_CustomerAccount");
             }
-            catch (Exception)
+            else
             {
-                throw;
+                return PartialView("_Welcome");
             }
         }
 
