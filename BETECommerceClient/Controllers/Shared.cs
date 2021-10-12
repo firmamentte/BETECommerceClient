@@ -11,14 +11,7 @@ namespace BETECommerceClient.Controllers
         {
             get
             {
-                try
-                {
-                    return HttpContext.Session.GetString("Username") ?? null;
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
+                return HttpContext.Session.GetString("Username") ?? null;
             }
         }
 
